@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewBag.Title = "Giris";
+    Layout = "~/Views/Shared/Layout_Anasayfa.cshtml";
+}
+
+@if (Fonksiyonlar.Aktiflik == "1")
+{
+
+
+
+
+    <META HTTP-EQUIV="Refresh" CONTENT="0; URL=https://localhost:44348/Home/Index">
+
+}
+else
+{
+    <section class="page-heading" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="logo">
+                        <img src="~/2093_flight/img/logo.png" alt="Flight Template">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="page-direction-button">
+                        <a href="/Home/Index"><i class="fa fa-home"></i>HIZLI REZERVASYON</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+    <section class="contact-form">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h2>GİRİŞ YAP</h2>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-3">
+                    <form id="contact" method="post" class="needs-validation">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <p class="text-danger">Eposta Adresinizi Giriniz:</p>
+                                    <input name="kadi" type="text" class="form-control" id="kadi" placeholder="Eposta..." required>
+                                  
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <p class="text-danger">Şifrenizi Giriniz:</p>
+                                    <input name="sifre" type="password" class="form-control" id="sifre" placeholder="Şifre..." required>
+                                    
+                                </fieldset>
+                            </div>
+
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <button type="button" id="btngirisyap" class="btn btn-success">Giriş Yap</button>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <p style="color:white">Hesabınız yok mu? Hesap Oluşturmak İçin</p> <a href="/Home/HesapOlustur">Tıklayınız</a>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+
+
+            $('#btngirisyap').click(function () {
+                var kadi = $("#kadi").val();
+                var sifre = $("#sifre").val();
+
+                if (kadi == "" || sifre == "") {
+                    alert("Kullanıcı Eposta Ve Şifrenizi Giriniz...")
+                }
+                else {
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Home/GirisYap',
+                        dataType: 'json',
+                        data: $('form').serialize(),
+                        success: function (cevap) {
+
+
+                            var i = 0;
+                            var j = cevap.length;
+                           
+                            if (0 < j) {
+                                while (i < j) {
+
+
+                                    $(location).prop('href', '/Home/Index')
+                                    $('#kadi').val("");
+                                    $('#sifre').val("");
+                                    i++;
+                                }
+                            }
+                            else {
+                                alert("Kullanıcı Eposta Veya Şifreniz Hatalıdır.Lütfen Tekrar Deneyiniz...")
+                                $('#kadi').val("");
+                                $('#sifre').val("");
+
+                            }
+                            
+
+                       
+
+
+                        }
+
+                    });
+                }
+            });
+        });
+    </script>
+ 
+
+}
+
+

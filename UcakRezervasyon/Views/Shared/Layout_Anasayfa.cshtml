@@ -1,0 +1,161 @@
+﻿
+    <script src="~/2093_flight/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!--
+
+
+    http://www.tooplate.com/view/2093-flight
+
+    -->
+    <title>PACİFİC HAVACILIK</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link rel="stylesheet" href="~/2093_flight/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/2093_flight/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="~/2093_flight/css/fontAwesome.css">
+    <link rel="stylesheet" href="~/2093_flight/css/hero-slider.css">
+    <link rel="stylesheet" href="~/2093_flight/css/owl-carousel.css">
+    <link rel="stylesheet" href="~/2093_flight/css/tooplate-style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Spectral:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <script src="~/2093_flight/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+    <style>
+        .btn-group .button {
+            background-color: #008CBA; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: right;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            float: right;
+        }
+
+            .btn-group .button:hover {
+                background-color: #3e8e41;
+            }
+    </style>
+
+    <script type="text/javascript">
+        function asagiKaydir() {
+            window.scrollBy(0, 500)
+        }
+    </script>
+ 
+    <style>
+        div.sticky {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sticky" style="z-index: 1;">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <!-- Brand -->
+            <a class="navbar-brand" href="/Home/Giris">
+                <img src="~/2093_flight/img/logo.png" alt="logo" style="width:150px;">
+            </a>
+            <div class="btn-group" style="position:absolute; right:5px;">
+            
+                <button class="button" onclick="asagiKaydir()">@Fonksiyonlar.aktbuton</button>
+
+            </div>
+
+        </nav>
+    </div>
+
+
+    <div>
+        @RenderBody()
+    </div>
+    <br> <br> <br> <br> <br>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="primary-button">
+                        <a href="#" class="scroll-top">Başa Dön</a>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <p>
+                        PACİFİC &copy; 2019 Ahmet Jiyan Bayat. Bütün Haklar Saklıdır.
+
+                        | Limited Şirketi: <em>Pacific</em>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+    <script src="~/2093_flight/js/vendor/bootstrap.min.js"></script>
+
+    <script src="~/2093_flight/js/plugins.js"></script>
+    <script src="~/2093_flight/js/main.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // navigation click actions
+            $('.scroll-link').on('click', function (event) {
+                event.preventDefault();
+                var sectionID = $(this).attr("data-id");
+                scrollToID('#' + sectionID, 750);
+            });
+            // scroll to top action
+            $('.scroll-top').on('click', function (event) {
+                event.preventDefault();
+                $('html, body').animate({ scrollTop: 0 }, 'slow');
+            });
+            // mobile nav toggle
+            $('#nav-toggle').on('click', function (event) {
+                event.preventDefault();
+                $('#main-nav').toggleClass("open");
+            });
+        });
+        // scroll function
+        function scrollToID(id, speed) {
+            var offSet = 0;
+            var targetOffset = $(id).offset().top - offSet;
+            var mainNav = $('#main-nav');
+            $('html,body').animate({ scrollTop: targetOffset }, speed);
+            if (mainNav.hasClass("open")) {
+                mainNav.css("height", "1px").removeClass("in").addClass("collapse");
+                mainNav.removeClass("open");
+            }
+        }
+        if (typeof console === "undefined") {
+            console = {
+                log: function () { }
+            };
+        }
+    </script>
+</body>
+</html>

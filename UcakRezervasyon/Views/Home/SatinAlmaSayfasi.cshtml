@@ -1,0 +1,143 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SatinAlmaSayfasi</title>
+</head>
+<body>
+    <div>
+
+        <div class="col-lg-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>SEFER BİLGİLERİ</th>
+
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <tr style="background-color:deepskyblue">
+                                    <td><img width="75px" heigth="75px" src="/imgFirmaLogo/@Fonksiyonlar.Logo" /></td>
+                                    <td><b><i>NEREDEN:</i></b>@Fonksiyonlar.Nereden</td>
+                                    <td><b><i>NEREYE:</i></b>@Fonksiyonlar.Nereye</td>
+                                    <td><b><i>SAAT:</i></b>@Fonksiyonlar.Saat</td>
+                                    <td><b><i>TARİH:</i></b>@Fonksiyonlar.Tarih</td>
+                                    <td><b><i>FİYAT:</i></b>@Fonksiyonlar.Fiyat TL</td>
+
+                                </tr>
+
+
+
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-12">
+                        <form id="contact" method="post">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <p class="text-danger">ADINIZI GİRİNİZ</p>
+                                        <input name="ad" type="text" class="form-control" id="ad" placeholder="Adınız..." required>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <p class="text-danger">SOYADINIZI GİRİNİZ</p>
+                                        <input name="soyad" type="text" class="form-control" id="soyad" placeholder="Soyadınız..." required>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <p class="text-danger">TELEFON NUMARANIZI GİRİNİZ</p>
+                                        <input name="tel" type="text" class="form-control" id="tel" placeholder="Telefon..." required>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <p class="text-danger">KART NUMARANIZI GİRİNİZ</p>
+                                        <input name="kartnumarasi" type="text" class="form-control" id="kartnumarasi" placeholder="kart numarası..." required>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <p class="text-danger">SON KULLANIM TARİHİ</p>
+                                        <input name="sontarih" type="text" class="form-control" id="sontarih" placeholder="son tarih..." required>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <p class="text-danger">CVC</p>
+                                        <input name="cvc" type="text" class="form-control" id="cvc" placeholder="cvc..." required>
+                                    </fieldset>
+                                </div>
+
+
+
+
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <button type="button" id="satinal" class="btn btn-success">SATIN AL</button>
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+        $(document).ready(function () {
+
+            $('#satinal').click(function () {
+
+            var ad = $("#ad").val();
+            var soyad = $("#soyad").val();
+            var tel = $("#tel").val();
+            var kartnumarasi = $("#kartnumarasi").val();
+            var sontarih = $("#sontarih").val();
+            var cvc = $("#cvc").val();
+
+                if (ad == "" || soyad == "" || tel == "" || kartnumarasi == "" || sontarih == "" || cvc == "") {
+                    alert("Lütfen Girilmesi Gereken Bilgileri Eksiksiz Giriniz...");
+                }
+                else {
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Home/TekBiletAl',
+                        dataType: 'json',
+                        data: $('form').serialize(),
+                        success: function (cevap) {
+                            var Mesaj = cevap[0].Mesaj;
+                            alert(Mesaj);
+
+                            $(location).prop('href', '/Home/Rezervasyonlarım')
+
+                        }
+
+                    });
+                }
+            });
+        });
+</script>

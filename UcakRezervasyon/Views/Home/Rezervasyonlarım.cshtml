@@ -1,0 +1,243 @@
+﻿
+@{
+    ViewBag.Title = "Rezervasyonlarım";
+    Layout = "~/Views/Shared/Layout_Rezervasyon.cshtml";
+}
+
+<style>
+    .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 7px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin: 4px 2px;
+        cursor: pointer;
+        -webkit-transition-duration: 0.8s; /* Safari */
+        transition-duration: 0.8s;
+    }
+
+    .button1 {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+
+    .button2:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+</style>
+
+@if (Fonksiyonlar.Aktiflik == "1")
+{
+    if (Fonksiyonlar.RezerveSayisi > 0)
+    {
+        <div class="container">
+
+            <div class="card bg-dark text-white" style="text-align-last:left">
+                <div class="card-header" style="text-align-last:center"><h2 style="color:cornflowerblue"><b>REZERVE EDİLEN BİLETLER</b></h2></div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col bg" style="text-align-last:center"><img width="50px" heigth="50px" src="~/imgFirmaLogo/thy.png" /></div>
+                        <div class="col bg" style="text-align-last:center"><img width="50px" heigth="50px" src="~/imgFirmaLogo/pegasus.png" /></div>
+                        <div class="col bg" style="text-align-last:center"><img width="50px" heigth="50px" src="~/imgFirmaLogo/sun.png" /></div>
+
+                    </div>
+                    <hr size="20" color="red" />
+                    <div class="row">
+                        <table class="table" style="color:white">
+                            <thead>
+                                <tr>
+
+                                    <th style="text-align:center">
+                                        <h4>LOGO</h4>
+
+                                    </th>
+                                    <th style="text-align:center">
+                                        <h4>FİRMA ADI</h4>
+
+                                    </th>
+                                    <th style="text-align:center">
+                                        <h4>NEREDEN</h4>
+
+                                    </th>
+                                    <th style="text-align:center">
+                                        <h4>NEREYE</h4>
+
+                                    </th>
+                                    <th style="text-align:center">
+                                        <h4>TARİH</h4>
+
+                                    </th>
+                                    <th style="text-align:center">
+                                        <h4>SAAT</h4>
+
+                                    </th>
+                                    <th style="text-align:center">
+                                        <h4>FİYAT</h4>
+
+                                    </th>
+                                    <th style="text-align:center">
+                                        <h4>KOLTUK NUMARASI</h4>
+                                    </th>
+                                    <th style="text-align:center">
+                                        <h4 style="color:red">İPTAL ET</h4>
+                                    </th>
+                                    <th style="text-align:center">
+                                        <h4 style="color:dodgerblue">SATIN AL</h4>
+                                    </th>
+                                </tr>
+
+
+
+                            </thead>
+                            <tbody id="SeferListesi">
+                            </tbody>
+
+
+                        </table>
+                    </div>
+
+                </div>
+                <br />
+                <hr size="20" color="red" />
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+
+
+                    <div class="col" style="text-align-last:center">
+                        <h5>(@Fonksiyonlar.Ad, %@Fonksiyonlar.toplampuan indirim uygulanmıştır )</h5>
+                    </div>
+                    <div class="col" style="text-align-last:center">
+                        <h4>TOPLAM FİYAT=@Fonksiyonlar.fiyatson</h4>
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
+
+                    <div class="col" style="text-align-last:center">
+                        <button id="biletsatis" class="button button2">Tüm Biletleri Satın Al</button>
+                    </div>
+
+                </div>
+                <div class="card-footer" style="text-align-last:center"><i style="color:cornflowerblue">PACİFİC &copy; 2019 Ahmet Jiyan Bayat. Bütün Haklar Saklıdır.</i></div>
+            </div>
+
+
+        </div>
+        <br />
+
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script>
+            $(document).ready(function () {
+
+
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Home/SatinAl',
+                    dataType: 'json',
+                    data: $('form').serialize(),
+                    success: function (cevap) {
+                        var i = 0;
+                        var l = cevap.length;
+
+                        $('#SeferListesi').empty();
+                        while (i < l) {
+
+                            var Logo1 = cevap[i].Logo;
+
+                            $('#SeferListesi').append('<tr style="background-color:transparent;"><td><img width="15px" heigth="15px" src="/imgFirmaLogo/' + Logo1 + '" /></td><td>' + cevap[i].FirmaAdi + '</td><td>' + cevap[i].Nereden +
+                                '</td><td>' + cevap[i].Nereye +
+                                '</td><td>' + cevap[i].Tarih +
+                                '</td><td>' + cevap[i].Saat +
+                                '</td><td>' + cevap[i].Fiyat +
+                                ' TL</td><td>' + cevap[i].KoltukNumarasi +
+                                '</td><td><a href="/Home/Rezervasyonlarım?KoltukNumarasi=' + cevap[i].KoltukNumarasi +
+                                '&UcakID=' + cevap[i].UcakID +
+                                '&SeferID=' + cevap[i].SeferID +
+                                '"><input class="btn btn-danger" type="button" value="İptal"/></td></a><td><a href="/Home/SatinAlmaSayfasi?KoltukNumarasi=' + cevap[i].KoltukNumarasi +
+                                '&UcakID=' + cevap[i].UcakID +
+                                '&SeferID=' + cevap[i].SeferID +
+                                '&FirmaAdi=' + cevap[i].FirmaAdi +
+                                '&Nereden=' + cevap[i].Nereden +
+                                '&Nereye=' + cevap[i].Nereye +
+                                '&Tarih=' + cevap[i].Tarih +
+                                '&Saat=' + cevap[i].Saat +
+                                '&Fiyat=' + cevap[i].Fiyat +
+                                '&Logo=' + cevap[i].Logo + '"><input class="btn btn-primary" type="button" value="Satın Al"/></td></a></tr>');
+
+                            i++;
+
+                        }
+
+                    }
+
+                });
+
+
+
+
+                $('#biletsatis').click(function () {
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Home/BiletSatis',
+                        dataType: 'json',
+                        data: $('form').serialize(),
+                        success: function (cevap) {
+
+                            alert("Satın alma işlemi başarıyla tamamlandı. biletinizi hava alanından alabilirsiniz. iyi yolculuklar dileriz...")
+
+                        }
+
+                    });
+                });
+
+            });
+        </script>
+    }
+    else
+    {
+
+        <div class="container">
+            <div class="card bg-dark text-white" style="text-align-last:left">
+                <div class="card-header" style="text-align-last:center"><h2 style="color:cornflowerblue"><b>REZERVE EDİLEN BİLETLER</b></h2></div>
+                <br />
+                <br />
+                <div class="card-body">
+                    <h4>MERHABA @Fonksiyonlar.Ad . PACIFIC ŞİRKETİ SUAN DA ADINIZA BİLET BULAMAMAKTADIR. LÜTFEN KENDİNİZE UYGUN BİR BİLET REZERVE EDİNİZ...</h4>
+                </div>
+                <br />
+                <br />
+                <div class="card-footer" style="text-align-last:center"><i style="color:cornflowerblue">PACİFİC &copy; 2019 Ahmet Jiyan Bayat. Bütün Haklar Saklıdır.</i></div>
+            </div>
+
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+
+
+    }
+}
+else
+{
+
+}
+
+
+
+
+
+
+
+

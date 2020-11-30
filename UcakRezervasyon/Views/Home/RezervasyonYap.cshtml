@@ -1,0 +1,536 @@
+﻿
+@{
+    ViewBag.Title = "RezervasyonYap";
+    Layout = "~/Views/Shared/Layout_Rezervasyon.cshtml";
+    int i = 1;
+}
+@if (Fonksiyonlar.Aktiflik == "1")
+{
+    <div align="center"><p class="text-primary"><font size="5"><b>REZERVASYON İŞLEMLERİ</b></font></p></div>
+    <div class="col-lg-12">
+        <div class="col-lg-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>SEFER BİLGİLERİ</th>
+
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><img width="75px" heigth="75px" src="/imgFirmaLogo/@Fonksiyonlar.Logo" /></td>
+                                </tr>
+                                @foreach (var item in ViewBag.Bilet)
+                                {
+                                    <tr>
+                                        <td><i> @item</i></td>
+                                    </tr>
+
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+
+            <div align="center"><h4 class="text-primary"><font>KİŞİ BİLGİ İŞLEMLERİ</font></h4></div>
+            <p>@Fonksiyonlar.mesaj1</p>
+
+            <div class="container">
+                <div class="row">
+                    <form id="form-submit" method="get">
+
+
+
+
+                        <div class="col-lg-12">
+                            <div class="col-lg-6">
+                                <p class="text-danger">Koltuk Numarası</p>
+                                <input name="Koltukid" type="text" class="form-control col-lg-12" value="" id="Koltukid" required>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="col-lg-6">
+                                <p class="text-danger">ADINIZI GİRİNİZ</p>
+                                <input name="adi" type="text" class="form-control col-lg-12" value="@Fonksiyonlar.Ad" id="adi" placeholder="Adınız..." required>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="col-lg-6">
+                                <p class="text-danger">SOYADINIZI GİRİNİZ</p>
+                                <input name="soyadi" type="text" class="form-control" value="@Fonksiyonlar.Soyad" id="soyadi" placeholder="Soyadınız..." required>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="col-lg-6">
+                                <p class="text-danger">NUMARANIZI GİRİNİZ</p>
+                                <input name="tel" type="text" class="form-control" value="@Fonksiyonlar.Tel" id="tel" placeholder="Telefon Numaranız..." required>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <div align="center"><p class="text-primary"><font size="5"><b>KOLTUK İŞLEMLERİ</b></font></p></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="col-lg-6">
+                    <h3 style="color:red" class="fa-align-left">BUSINESS</h3>
+                    <div class="col-lg-6">
+                        @foreach (var item in ViewBag.Koltuklar)
+                        {
+                            string pasifa = "required";
+                            string KoltukRengi = "";
+                            if (item.KoltukDurumu == "False")
+                            {
+                                KoltukRengi = "red";
+                            }
+                            else
+                            {
+                                KoltukRengi = "green";
+                                pasifa = "disabled";
+
+                            }
+                            if (item.KoltukKonfor == "business")
+                            {
+                                <div style="padding:15px;float:left">
+                                    <input type="submit" style="background-color: @KoltukRengi" class="gonder" value="@i" id="busines" @pasifa />
+
+                                </div>
+                                i++;
+                            }
+
+
+                        }
+                    </div>
+
+
+                </div>
+                <div class="col-lg-6">
+                    <h3 style="color:red" class="fa-align-left">ECONOMY</h3>
+                </div>
+                <div class="col-lg-4">
+
+                    @foreach (var item in ViewBag.Koltuklar)
+
+                    {
+                        string pasifa = "required";
+                        string KoltukRengi = "";
+                        if (item.KoltukDurumu == "False")
+                        {
+                            KoltukRengi = "red";
+                        }
+                        else
+                        {
+                            KoltukRengi = "green";
+                            pasifa = "disabled";
+
+                        }
+                        if (item.KoltukKonfor == "economy")
+                        {
+                            <div style="padding:15px;float:left">
+                                <input type="submit" style="background-color: @KoltukRengi" class="gonder" value="@i" id="busines" @pasifa />
+
+                            </div>
+                            i++;
+                        }
+
+
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div aling="center">
+                <button id="btntamamla" class="button button2">Rezervasyonu Tamamla</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+        }
+
+        .button1 {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        }
+
+        .button2:hover {
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+        }
+    </style>
+
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var Koltukid;
+
+            $(".gonder").click(function () {
+                Koltukid = $(this).val();
+
+                $(".yellow").attr("style", "background-color:red");
+                $(".yellow").attr("class", "gonder red");
+
+                $(this).attr("style", "background-color:yellow");
+                $(this).attr("class", "gonder yellow");
+                $('#Koltukid').val(Koltukid);
+            });
+
+            $("#btntamamla").click(function () {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Home/RezervasyonTamamla',
+                    dataType: 'json',
+                    data: $('form').serialize(),
+                    success: function (cevap) {
+                        $(".yellow").attr("style", "background-color:green");
+                        $(".yellow").attr("class", "gonder green");
+
+                        alert("Rezervasyon Başarıyla Kaydedildi.");
+                        document.location.reload(true);
+
+
+
+                    }
+                });
+
+            });
+
+
+
+
+        });
+
+
+    </script>
+
+
+
+
+
+}
+else
+{
+
+    <div align="center"><p class="text-primary"><font size="5"><b>REZERVASYON İŞLEMLERİ</b></font></p></div>
+    <div class="col-lg-12">
+        <div class="col-lg-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>SEFER BİLGİLERİ</th>
+
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><img width="75px" heigth="75px" src="/imgFirmaLogo/@Fonksiyonlar.Logo" /></td>
+                                </tr>
+                                @foreach (var item in ViewBag.Bilet)
+                                {
+                                    <tr>
+                                        <td><i> @item</i></td>
+                                    </tr>
+
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+
+            <div align="center"><h4 class="text-primary"><font>KİŞİ BİLGİ İŞLEMLERİ</font></h4></div>
+            <p>@Fonksiyonlar.mesaj1</p>
+
+            <div class="container">
+                <div class="row">
+                    <form id="form-submit" method="get">
+
+
+
+
+                        <div class="col-lg-12">
+                            <div class="col-lg-6">
+                                <p class="text-danger">Koltuk Numarası</p>
+                                <input name="Koltukid" type="text" class="form-control col-lg-12" value="" id="Koltukid" required>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="col-lg-6">
+                                <p class="text-danger">ADINIZI GİRİNİZ</p>
+                                <input name="ad" type="text" class="form-control col-lg-12" value="@Fonksiyonlar.Ad" id="ad" placeholder="Adınız..." required>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="col-lg-6">
+                                <p class="text-danger">SOYADINIZI GİRİNİZ</p>
+                                <input name="soyad" type="text" class="form-control" value="@Fonksiyonlar.Soyad" id="soyad" placeholder="Soyadınız..." required>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="col-lg-6">
+                                <p class="text-danger">NUMARANIZI GİRİNİZ</p>
+                                <input name="tel" type="text" class="form-control" value="@Fonksiyonlar.Tel" id="tel" placeholder="Telefon Numaranız..." required>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="col-lg-6">
+                                <p class="text-danger">KART NUMARASI GİRİNİZ</p>
+                                <input name="kartnumarasi" type="text" class="form-control" value="@Fonksiyonlar.Tel" id="kartnumarasi" placeholder="Kart Numaranız..." required>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="col-lg-6">
+                                <p class="text-danger">SON KULLANMA TARİHİNİ GİRİNİZ</p>
+                                <input name="sontarih" type="text" class="form-control" value="@Fonksiyonlar.Tel" id="sontarih" placeholder="Son Kullanma Tarihi..." required>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="col-lg-6">
+                                <p class="text-danger">CVC</p>
+                                <input name="cvc" type="text" class="form-control" value="@Fonksiyonlar.Tel" id="cvc" placeholder="cvc Numaranız..." required>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <div align="center"><p class="text-primary"><font size="5"><b>KOLTUK İŞLEMLERİ</b></font></p></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="col-lg-6">
+                    <h3 style="color:red" class="fa-align-left">BUSINESS</h3>
+                    <div class="col-lg-6">
+                        @foreach (var item in ViewBag.Koltuklar)
+                        {
+                            string pasifa = "required";
+                            string KoltukRengi = "";
+                            if (item.KoltukDurumu == "False")
+                            {
+                                KoltukRengi = "red";
+                            }
+                            else
+                            {
+                                KoltukRengi = "green";
+                                pasifa = "disabled";
+
+                            }
+                            if (item.KoltukKonfor == "business")
+                            {
+                                <div style="padding:15px;float:left">
+                                    <input type="submit" style="background-color: @KoltukRengi" class="gonder" value="@i" id="busines" @pasifa />
+
+                                </div>
+                                i++;
+                            }
+
+
+                        }
+                    </div>
+
+
+                </div>
+                <div class="col-lg-6">
+                    <h3 style="color:red" class="fa-align-left">ECONOMY</h3>
+                </div>
+                <div class="col-lg-4">
+
+                    @foreach (var item in ViewBag.Koltuklar)
+
+                    {
+                        string pasifa = "required";
+                        string KoltukRengi = "";
+                        if (item.KoltukDurumu == "False")
+                        {
+                            KoltukRengi = "red";
+                        }
+                        else
+                        {
+                            KoltukRengi = "green";
+                            pasifa = "disabled";
+
+                        }
+                        if (item.KoltukKonfor == "economy")
+                        {
+                            <div style="padding:15px;float:left">
+                                <input type="submit" style="background-color: @KoltukRengi" class="gonder" value="@i" id="busines" @pasifa />
+
+                            </div>
+                            i++;
+                        }
+
+
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div aling="center">
+                <button id="btntamamla" class="button button2">Rezervasyonu Tamamla</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+        }
+
+        .button1 {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        }
+
+        .button2:hover {
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+        }
+    </style>
+
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var Koltukid;
+
+            $(".gonder").click(function () {
+                Koltukid = $(this).val();   
+
+                $(".yellow").attr("style", "background-color:red");
+                $(".yellow").attr("class", "gonder red");
+
+                $(this).attr("style", "background-color:yellow");
+                $(this).attr("class", "gonder yellow");
+                $('#Koltukid').val(Koltukid);
+            });
+
+            $("#btntamamla").click(function () {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Home/TekBiletAl',
+                    dataType: 'json',
+                    data: $('form').serialize(),
+                    success: function (cevap) {
+                        $(".yellow").attr("style", "background-color:green");
+                        $(".yellow").attr("class", "gonder green");
+                          var Mesaj = cevap[0].Mesaj;
+                            alert(Mesaj);               
+                        $(location).prop('href', '/Home/Giris')
+
+
+
+                    }
+                });
+
+            });
+
+
+
+
+        });
+
+
+    </script>
+
+
+
+
+}

@@ -1,0 +1,496 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@if (Fonksiyonlar.Ad == "")
+{
+    <section class="banner" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="left-side">
+                        <div class="logo">
+                            <img src="~/2093_flight/img/logo.png" alt="Flight Template">
+                        </div>
+                        <div class="tabs-content">
+
+                            <ul class="social-links">
+                                <li><a href="https://www.facebook.com/Bilgisayar-m%C3%BChendisli%C4%9Fi-109972259692427/?ref=settings"><em>Facebook</em> Sayfamız<i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://www.youtube.com/channel/UCfCh-krTRqqoAKCNYWn27zQ"><em>YouTube</em> Kanalımız<i class="fa fa-youtube"></i></a></li>
+                                <li><a href="https://www.instagram.com/bilgisayar_muhendisligi/?hl=tr"><em>instagram</em> Sayfamız<i class="fa fa-instagram"></i></a></li>
+
+                            </ul>
+                            <div class="page-direction-button">
+                                <a href="/Home/Giris"><i class="fa fa-lock"></i>GİRİŞ YAP</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <section id="first-tab-group" class="tabgroup">
+                        <div id="tab1">
+                            <div class="submit-form">
+                                <h4>UÇAK SEFERLERİ İÇİN <em>ARAMA YAPIN</em>:</h4>
+                                <form id="form-submit" method="get">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <fieldset>
+                                                <label for="from">Nereden:</label>
+                                                <select required name='nereden' id="nereden" onchange='this.form()'>
+                                                    <option value="">Şehir Seçiniz...</option>
+                                                    <option value="İstanbul">İstanbul</option>
+                                                    <option value="Ankara">Ankara</option>
+                                                    <option value="Izmir">İzmir</option>
+                                                    <option value="Antalya">Antalya</option>
+                                                    <option value="Van">Van</option>
+                                                    <option value="Mus">Muş</option>
+                                                    <option value="Sivas">Sivas</option>
+                                                    <option value="Gaziantep">Gaziantep</option>
+                                                    <option value="Mugla">Muğla</option>
+                                                    <option value="Trabzon">Trabzon</option>
+                                                </select>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <fieldset>
+                                                <label for="to">Nereye:</label>
+                                                <select required name='nereye' id="nereye" onchange='this.form()'>
+                                                    <option value="">Şehir Seçiniz...</option>
+                                                    <option value="Istanbul">İstanbul</option>
+                                                    <option value="Ankara">Ankara</option>
+                                                    <option value="Izmir">İzmir</option>
+                                                    <option value="Antalya">Antalya</option>
+                                                    <option value="Van">Van</option>
+                                                    <option value="Mus">Muş</option>
+                                                    <option value="Sivas">Sivas</option>
+                                                    <option value="Gaziantep">Gaziantep</option>
+                                                    <option value="Mugla">Muğla</option>
+                                                    <option value="Trabzon">Trabzon</option>
+                                                </select>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <fieldset>
+                                                <label for="departure">Tarih:</label>
+                                                <input name="tarih" type="text" class="form-control" id="trh" placeholder="Tarih Seçiniz..." required onchange='this.form()'>
+                                            </fieldset>
+                                        </div>
+
+
+                                        <div class="col-md-6">
+                                            <fieldset>
+                                                <div class="row">
+                                                    <button type="button" id="btnseferara" class="btn btn-primary">SEFER ARA</button>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+    <div class="tabs-content seferlistesialani" id="weather" style="display:none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h2>UÇUŞLAR LİSTESİ</h2>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="wrapper">
+                        <div class="col-md-12">
+                            <div class="weather-content">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <ul class="tabs clearfix" data-tabgroup="second-tab-group">
+                                            <li><a href="#Biletler" class="active">Bilet Seç</a></li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <section id="second-tab-group" class="weathergroup">
+                                            <div id="Biletler">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="weather-item">
+
+                                                            <div class="warning">
+                                                                <img src="/2093_flight/img/logo.png" width="200" height="100" alt="">
+                                                            </div>
+
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+
+                                                                        <th style="text-align:center">
+                                                                            Logo
+                                                                        </th>
+                                                                        <th style="text-align:center">
+                                                                            FİRMA ADI
+                                                                        </th>
+                                                                        <th style="text-align:center">
+                                                                            NEREDEN
+                                                                        </th>
+                                                                        <th style="text-align:center">
+                                                                            NEREYE
+                                                                        </th>
+                                                                        <th style="text-align:center">
+                                                                            TARİH
+                                                                        </th>
+                                                                        <th style="text-align:center">
+                                                                            SAAT
+                                                                        </th>
+                                                                        <th style="text-align:center">
+                                                                            FİYAT
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="SeferListesi65">
+                                                                </tbody>
+
+
+                                                            </table>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('#btnseferara').click(function () {
+                                 var nereden = $("#nereden").val();
+                 var nereye = $("#nereye").val();
+                 var tarih = $("#trh").val();
+                if (nereden == "" || nereye == "" || tarih == "") {
+                    alert("Lütfen Girilmesi Gereken Bilgileri Eksiksiz Giriniz...");
+                }
+                else {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Home/SeferAra',
+                        dataType: 'json',
+                        data: $('form').serialize(),
+                        success: function (cevap) {
+                            var i = 0;
+                            var l = cevap.length;
+                            $('.seferlistesialani').attr('style', 'display:block');
+                            $('#SeferListesi65').empty();
+                            while (i < l) {
+
+                                var Logo = cevap[i].Logo;
+
+
+
+                                $('#SeferListesi65').append('<tr style="background-color:transparent;"><td><img width="15px" heigth="15px" src="/imgFirmaLogo/' + Logo + '"  /></td><td>' + cevap[i].FirmaAdi + '</td><td>' + cevap[i].Nereden +
+                                    '</td><td>' + cevap[i].Nereye +
+                                    '</td><td>' + cevap[i].Tarih +
+                                    '</td><td>' + cevap[i].Saat +
+                                    '</td><td>' + cevap[i].Fiyat +
+                                    ' TL</td><td><a href="/Home/RezervasyonYap?SeferID=' + cevap[i].SeferID +
+                                    '&Logo=' + cevap[i].Logo +
+                                    '&FirmaAdi=' + cevap[i].FirmaAdi +
+                                    '&Nereden=' + cevap[i].Nereden +
+                                    '&Nereye=' + cevap[i].Nereye +
+                                    '&Tarih=' + cevap[i].Tarih +
+                                    '&Saat=' + cevap[i].Saat +
+                                    '&Fiyat=' + cevap[i].Fiyat +
+                                    '&UcakID=' + cevap[i].UcakID + '"><input class="btn btn-primary" type="button" value="Rezervasyon Yap"/></td></a></tr>');
+                                i++;
+                                 $('#nereden').val("");
+                                 $('#nereye').val("");
+                                 $('#trh').val("");
+                            }
+
+                        }
+
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var dateToday = new Date();
+            dateToday.setDate(dateToday.getDate());
+
+            $('#trh').datepicker({
+                autoclose: true,
+                startDate: dateToday
+            })
+
+        });
+
+    </script>
+
+
+}
+else
+{
+    <section class="banner" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="left-side">
+
+
+
+                        <div class="logo">
+                            <img src="~/2093_flight/img/logo.png" alt="">
+                        </div>
+                        <div class="tabs-content">
+
+                            <ul class="social-links">
+                                <li><a href="https://www.facebook.com/Bilgisayar-m%C3%BChendisli%C4%9Fi-109972259692427/?ref=settings"><em>Facebook</em> Sayfamız<i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://www.youtube.com/channel/UCfCh-krTRqqoAKCNYWn27zQ"><em>YouTube</em> Kanalımız<i class="fa fa-youtube"></i></a></li>
+                                <li><a href="https://www.instagram.com/bilgisayar_muhendisligi/?hl=tr"><em>instagram</em> Sayfamız<i class="fa fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <section id="first-tab-group" class="tabgroup">
+                        <div id="tab1">
+                            <div class="submit-form">
+                                <h4>UÇAK SEFERLERİ İÇİN <em>ARAMA YAPIN</em>:</h4>
+                                <form id="form-submit" method="get">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <fieldset>
+                                                <label for="from">Nereden:</label>
+                                                <select required name='nereden' id="nereden" onchange='this.form()'>
+                                                    <option value="">Şehir Seçiniz...</option>
+                                                    <option value="İstanbul">İstanbul</option>
+                                                    <option value="Ankara">Ankara</option>
+                                                    <option value="Izmir">İzmir</option>
+                                                    <option value="Antalya">Antalya</option>
+                                                    <option value="Van">Van</option>
+                                                    <option value="Mus">Muş</option>
+                                                    <option value="Sivas">Sivas</option>
+                                                    <option value="Gaziantep">Gaziantep</option>
+                                                    <option value="Mugla">Muğla</option>
+                                                    <option value="Trabzon">Trabzon</option>
+                                                </select>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <fieldset>
+                                                <label for="to">Nereye:</label>
+                                                <select required name='nereye' id="nereye" onchange='this.form()'>
+                                                    <option value="">Şehir Seçiniz...</option>
+                                                    <option value="Istanbul">İstanbul</option>
+                                                    <option value="Ankara">Ankara</option>
+                                                    <option value="Izmir">İzmir</option>
+                                                    <option value="Antalya">Antalya</option>
+                                                    <option value="Van">Van</option>
+                                                    <option value="Mus">Muş</option>
+                                                    <option value="Sivas">Sivas</option>
+                                                    <option value="Gaziantep">Gaziantep</option>
+                                                    <option value="Mugla">Muğla</option>
+                                                    <option value="Trabzon">Trabzon</option>
+                                                </select>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <fieldset>
+                                                <label for="departure">Tarih:</label>
+                                                <input name="tarih" type="text" class="form-control" id="trh" placeholder="Tarih Seçiniz..." required onchange='this.form()'>
+                                            </fieldset>
+                                        </div>
+
+
+                                        <div class="col-md-6">
+                                            <fieldset>
+                                                <div class="row">
+                                                    <button type="button" id="btnseferara" class="btn btn-primary">SEFER ARA</button>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+    <div class="tabs-content seferlistesialani" id="weather" style="display:none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h2>UÇUŞLAR LİSTESİ</h2>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="wrapper">
+                        <div class="col-md-12">
+                            <div class="weather-content">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <ul class="tabs clearfix" data-tabgroup="second-tab-group">
+                                            <li><a href="#Biletler" class="active">Bilet Seç</a></li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <section id="second-tab-group" class="weathergroup">
+                                            <div id="Biletler">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="weather-item">
+                                                            <div class="warning">
+                                                                <img src="~/2093_flight/img/logo.png" width="200" height="100" alt="">
+                                                            </div>
+
+
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+
+                                                                        <th style="text-align:center">
+                                                                            Logo
+                                                                        </th>
+                                                                        <th style="text-align:center">
+                                                                            FİRMA ADI
+                                                                        </th>
+                                                                        <th style="text-align:center">
+                                                                            NEREDEN
+                                                                        </th>
+                                                                        <th style="text-align:center">
+                                                                            NEREYE
+                                                                        </th>
+                                                                        <th style="text-align:center">
+                                                                            TARİH
+                                                                        </th>
+                                                                        <th style="text-align:center">
+                                                                            SAAT
+                                                                        </th>
+                                                                        <th style="text-align:center">
+                                                                            FİYAT
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="SeferListesi65">
+                                                                </tbody>
+
+
+                                                            </table>
+
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('#btnseferara').click(function () {
+                 var nereden = $("#nereden").val();
+                 var nereye = $("#nereye").val();
+                 var tarih = $("#trh").val();
+                if (nereden == "" || nereye == "" || tarih == "") {
+                    alert("Lütfen Girilmesi Gereken Bilgileri Eksiksiz Giriniz...");
+                }
+                else {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Home/SeferAra',
+                        dataType: 'json',
+                        data: $('form').serialize(),
+                        success: function (cevap) {
+                            var i = 0;
+                            var l = cevap.length;
+                            $('.seferlistesialani').attr('style', 'display:block');
+                            $('#SeferListesi65').empty();
+                            while (i < l) {
+
+                                var Logo = cevap[i].Logo;
+
+
+
+                                $('#SeferListesi65').append('<tr style="background-color:transparent;"><td><img width="15px" heigth="15px" src="/imgFirmaLogo/' + Logo + '"  /></td><td>' + cevap[i].FirmaAdi + '</td><td>' + cevap[i].Nereden +
+                                    '</td><td>' + cevap[i].Nereye +
+                                    '</td><td>' + cevap[i].Tarih +
+                                    '</td><td>' + cevap[i].Saat +
+                                    '</td><td>' + cevap[i].Fiyat +
+                                    ' TL</td><td><a href="/Home/RezervasyonYap?SeferID=' + cevap[i].SeferID +
+                                    '&Logo=' + cevap[i].Logo +
+                                    '&FirmaAdi=' + cevap[i].FirmaAdi +
+                                    '&Nereden=' + cevap[i].Nereden +
+                                    '&Nereye=' + cevap[i].Nereye +
+                                    '&Tarih=' + cevap[i].Tarih +
+                                    '&Saat=' + cevap[i].Saat +
+                                    '&Fiyat=' + cevap[i].Fiyat +
+                                    '&UcakID=' + cevap[i].UcakID + '"><input class="btn btn-primary" type="button" value="Rezervasyon Yap"/></td></a></tr>');
+                                i++;
+
+                            }
+                        $('#nereden').val("");
+                        $('#nereye').val("");
+                        $('#trh').val("");
+
+                        }
+
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var dateToday = new Date();
+            dateToday.setDate(dateToday.getDate());
+
+            $('#trh').datepicker({
+                autoclose: true,
+                startDate: dateToday
+            })
+
+        });
+
+    </script>
+
+}
+

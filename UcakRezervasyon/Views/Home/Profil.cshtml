@@ -1,0 +1,118 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+            font-family: arial;
+        }
+
+        .title {
+            color: grey;
+            font-size: 18px;
+        }
+
+        button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 22px;
+            color: black;
+        }
+
+            button:hover, a:hover {
+                opacity: 0.7;
+            }
+    </style>
+</head>
+<body>
+
+    <h2 style="text-align: center"><b>PROFİL</b></h2>
+
+    <div class="col-lg-12">
+        <div class="col-lg-6">
+            <div class="container">
+                <div class="row">
+                    <form id="contact" method="post">
+                        <div class="col-lg-12">
+                            <div class="card" style="text-align-last:left">
+                                <img src="~/ProfilFoto/profil.png" alt="" style="width:100%">
+                                <h1 style="color:red">ADI:</h1>
+                                <input name="ad" type="text" class="form-control" id="ad" value="@Fonksiyonlar.Ad">
+                                <h1 style="color:red">SOYADI:</h1>
+                                <input name="soyad" type="text" class="form-control" id="soyad" value="@Fonksiyonlar.Soyad">
+                                <h1 style="color:red">TELEFON:</h1>
+                                <input name="tel" type="text" class="form-control" id="tel" value="@Fonksiyonlar.Tel">
+                                <h1 style="color:red">ADRES:</h1>
+                                <input name="adres" type="text" class="form-control" id="adres" value="@Fonksiyonlar.Adres">
+                                <h1 style="color:red">E-POSTA:</h1>
+                                <input name="eposta" type="text" class="form-control" id="eposta" value="@Fonksiyonlar.Email">
+
+                                <p>
+                                    <div style="text-align-last:center">
+                                        <div style="background-color:yellowgreen">
+                                            <button type="button" id="btnguncelle" class="btn btn-success">GÜNCELLE</button>
+                                        </div>
+
+                                    </div>
+                                </p>
+
+                                <p>
+                                    <div style="text-align-last:center">
+                                        <div style="background-color:slategrey">
+                                            <a href="/Home/Index"><i class="fa fa-home"></i>ANA SAYFA</a>
+                                        </div>
+
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+          
+        $("#btnguncelle").click(function () {
+          
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Home/Guncelle',
+                    dataType: 'json',
+                    data: $('form').serialize(),
+                    success: function (cevap) {
+                         alert("Bilgileriniz Güncellendi.")
+                        $(location).prop('href', '/Home/Profil')
+                       
+                    }
+                });
+            
+        });
+    });
+</script>
