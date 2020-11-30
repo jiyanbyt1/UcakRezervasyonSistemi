@@ -1,0 +1,9 @@
+Merhaba. Projemiz Veritabanı olmadan açılmaz normal olarak. Veri tabanı script olarak 2017 sürümü için paylaştım.
+Sql Server da bu script i açın ve execute edin veri tabanı oluşacaktır. eğer isim konusunda bir hata alırsanız script 
+içindeki UcakRezervasyon veri tabanı adını değitirin. bu script içinde atlamadan hepsini yeni isim ile değiştirmeniz
+gerekiyor. bu durumda açılacaktır. İsim değiştirme sonrasında tabi programda da sql bağlantısı veritabanı adını ve
+bilgisayar adını da değiştirmeniz gerekiyor. 
+giriş:
+eposta:jiyanbyt1@gmail.com
+şifre:123
+
